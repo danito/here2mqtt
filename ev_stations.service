@@ -1,0 +1,18 @@
+[Unit]
+Description=Service de monitoring des bornes de recharge HERE
+After=network.target
+
+[Service]
+# Remplacez 'pi' par votre nom d'utilisateur Linux
+User=dan
+# Le chemin complet vers le dossier contenant le script et le .env
+WorkingDirectory=/home/dan/here2mqtt
+# Le chemin vers votre exécutable python et votre script
+ExecStart=/usr/bin/python3 /home/dan/here2mqtt/ev_stations_mqtt.py
+# Redémarrer automatiquement après 5 secondes si le script plante
+Restart=always
+RestartSec=5  
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
